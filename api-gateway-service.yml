@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/authenticate/**
+        - id: ACCOUNT-SERVICE
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/account/**
+server:
+  port: 9191
+  error:
+    include-message: always
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+jwt:
+  secret: mySecretKey
+  expireMs: 120000
+  refreshExpireMs: 120000
