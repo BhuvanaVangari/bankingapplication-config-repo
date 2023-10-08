@@ -10,10 +10,10 @@ spring:
           uri: lb://ACCOUNT-SERVICE
           predicates:
             - Path=/api/account/**
-        - id: CREDIT-SERVICE
-          uri: lb://CREDIT-SERVICE
+        - id: LOAN-SERVICE
+          uri: lb://LOAN-SERVICE
           predicates:
-            - Path=/api/credit/**
+            - Path=/api/loan/**
 server:
   port: 9191
   error:
